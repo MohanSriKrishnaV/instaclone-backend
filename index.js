@@ -57,8 +57,8 @@ app.post("/api", (req, res) => {
     })
 })
 
-app.get("/", (req, res) => {
-    res.send("ok");
+app.get("/", async (req, res) => {
+    res.json({ result: await Data.find() })
 })
 
 
@@ -73,7 +73,7 @@ app.get("/", (req, res) => {
 // })
 
 app.get("/all", async (req, res) => {
-    res.json({ result: await Data.find().sort({ createdAt: -1 }) })
+
 })
 
 app.get("/images/:fileName", async (req, res) => {
