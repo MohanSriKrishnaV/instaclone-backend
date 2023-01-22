@@ -58,7 +58,12 @@ app.post("/api/post", (req, res) => {
 })
 
 app.get("/api", async (req, res) => {
-    res.json({ result: await Data.find().sort({ createdAt: -1 }) });
+    const user = await posts.find();
+    console.log(user);
+    res.status(200).json({
+        status: "success",
+        user
+    })
 })
 
 
