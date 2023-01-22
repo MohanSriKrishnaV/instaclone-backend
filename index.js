@@ -58,7 +58,7 @@ app.post("/api/post", (req, res) => {
 })
 
 app.get("/api", async (req, res) => {
-    const user = await posts.find();
+    const user = await Data.find();
     console.log(user);
     res.status(200).json({
         status: "success",
