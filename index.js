@@ -29,13 +29,13 @@ async function connection() {
 
 connection();
 
-app.post("/post", (req, res) => {
-    console.log(req.body, req.files);
-    res.json({ msg: "post post working" });
-})
+// app.post("/post", (req, res) => {
+//     console.log(req.body, req.files);
+//     res.json({ msg: "post post working" });
+// })
 
 
-app.post("/api", (req, res) => {
+app.post("/api/post", (req, res) => {
     const { author, location, description } = req.body
     const { image_file } = req.files
     image_file.mv("./uploads/" + image_file.name, async (err) => {
@@ -57,8 +57,8 @@ app.post("/api", (req, res) => {
     })
 })
 
-app.get("/", async (req, res) => {
-    res.json({ result: await Data.find() })
+app.get("/api", async (req, res) => {
+    res.json({ result: await Data.find().sort({ createdAt: -1 }) });
 })
 
 
@@ -72,9 +72,9 @@ app.get("/", async (req, res) => {
 //     res.json({ message: response })
 // })
 
-app.get("/all", async (req, res) => {
+// app.get("/all", async (req, res) => {
 
-})
+// })
 
 app.get("/images/:fileName", async (req, res) => {
     console.log(`./uploads/${req.params.fileName}`)
